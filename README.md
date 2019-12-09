@@ -1,0 +1,2 @@
+# KRX_semiconductor_index_prediction
+KRX_semiconductor_index_prediction
