@@ -1,0 +1,133 @@
+?sum
+1+1
+library(tqk)
+library(magrittr)
+code_get() %>%
+slice(grep("현대자동차", name)) %$%
+tqk_get(code, from="2019-01-01") ->
+hdc
+library(dplyr)
+code_get() %>%
+slice(grep("현대자동차", name)) %$%
+tqk_get(code, from="2019-01-01") ->
+hdc
+hdc
+hdc[date == '2019-11-22']
+code
+# date, open, high, low, close, volume, adjusted(수정주가)
+code_get() %>%
+code <- slice(grep("현대자동차", name)) %$%
+tqk_get(code, from="2019-01-01") ->
+hdc
+# date, open, high, low, close, volume, adjusted(수정주가)
+code_get() %>%
+slice(grep("현대자동차", name)) %$%
+tqk_get(code, from="2019-01-01") ->
+hdc
+hdc
+hdc[,1] == '2019-11-22'
+hdc[hdc[,1] == '2019-11-22',]
+max(hdc[,1])
+summarise(hdc, max(date), min(date))
+# cloumn 별 data check
+summarise(hdc, max(date), min(date))
+tidyverse_packages()
+library(tidyverse)
+tidyverse_packages()
+# 함수 설명 확인
+?code_get
+# select는 필요한 column만 지정하여 data를 정리하는 함수
+hdc %>%
+select(date, volume) %>%
+filter(date == '2019-10-21')
+hdc %>%
+select(date, close, volume) %>%
+filter(date == '2019-10-21')
+filter(hdc, date > '2019-11-01' & date < '2019-12-01')
+# 기간별 date data 확인
+hdc %>%
+filter(hdc, date > '2019-11-01' & date < '2019-12-01')
+# 기간별 date data 확인
+hdc %>%
+filter(hdc, date > '2019-11-01' & date < '2019-12-01')
+# 기간별 date data 확인
+hdc %>%
+filter(date > '2019-11-01' & date < '2019-12-01')
+getwd()
+setwd("C:/Users/Seungwon/Documents/MarketCaster/산업지수 예측/시계열 Data/CSV")
+getwd()
+KRX_semi <- read.csv("KRXsemiconductor_wd.csv")
+SKhynix <- read.csv("SKhynix_wd.csv")
+KOSPI200 <- read.csv("KOSPI200_wd.csv")
+KRX_semi.head()
+KRX_semi.head
+KRX_semi
+KRX_semi <- read.csv(file = "KRXsemiconductor_wd.csv", header = T)
+SKhynix <- read.csv(file = "SKhynix_wd.csv", header = T)
+KOSPI200 <- read.csv(file = "KOSPI200_wd.csv", header = T)
+head(KRX_semi)
+head(SKhynix)
+head(KOSPI200)
+# 분석하고자하는 연도 list 생성
+year <- list("2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011"
+,"2010" ,"2009", "2008", "2007", "2006")
+type(KRX_semi$date)
+typeof(KRX_semi$date)
+# 분석하고자하는 연도 list 생성
+year <- list(2018, 2017, 2016, 2015, "2014", "2013", "2012", "2011"
+,"2010" ,"2009", "2008", "2007", "2006")
+# 분석하고자하는 연도 list 생성
+year <- list(2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011
+,2010 ,2009, 2008, 2007, 2006)
+# 자료형 확인
+typeof(KRX_semi$date)
+KRX_semi$date
+KRX_semi$date[0]
+head(KRX_semi)
+# 자료형 확인
+typeof(KRX_semi$date)
+# 자료형 확인
+typeof(KRX_semi)
+substr(KRX_semi$date[0])
+substr(KRX_semi$date[0], 1, 4)
+substr(KRX_semi$date[0], 1, 10)
+a <- substr(KRX_semi$date[0], 1, 10)
+a
+as.Date(KRX_semi$date)
+KRX_semi$date[0]
+KRX_semi$date[0][0]
+KRX_semi$date[0, 0]
+typeof(KRX_semi$date)
+a <- as.Date(KRX_semi$date)
+typeof(a)
+a
+KRX_semi$date == "2009-08-21"
+KRX_semi[KRX_semi$date == "2009-08-21"]
+KRX_semi([)KRX_semi$date == "2009-08-21")
+KRX_semi(KRX_semi$date == "2009-08-21")
+# 자료형 확인
+typeof(KRX_semi)
+KRX_semi[0]
+KRX_semi <- read.csv(file = "KRXsemiconductor_wd.csv", header = T)
+SKhynix <- read.csv(file = "SKhynix_wd.csv", header = T)
+KOSPI200 <- read.csv(file = "KOSPI200_wd.csv", header = T)
+head(KRX_semi)
+head(SKhynix)
+head(KOSPI200)
+# 자료형 확인
+typeof(KRX_semi)
+KRX_semi[0]
+# 다양한 자료형이 가능
+list3 <- list("a", 1L, 1.5, T, list(1, 2))
+list3[5]
+# List의 일부 활용, subset
+list3[c(1, 2)]
+# 자료형 확인
+typeof(KRX_semi)
+KRX_semi[0]
+KRX_semi$date <- as.character(KRX_semi$date)
+# 자료형 확인
+typeof(KRX_semi)
+KRX_semi[0]
+KRX_semi[0][0]
+KRX_semi$date <- as.Date(str_sub(parse_datetime(KRX_semi$date, "%Y-%b-%d"),1,10))
