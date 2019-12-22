@@ -1,293 +1,42 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
-ls
-
-
-# In[2]:
-
-
-pwd
-
-
-# In[21]:
-
-
+#%%
 import pandas as pd
-import re
-get_ipython().run_line_magic('matplotlib', 'inline')
+import numpy as np
+import sys
 
-
-# In[22]:
-
-
-eco = pd.read_csv('/Users/mokpolar/Downloads/bloomberg_raw/economic.csv')
-
-
-# In[23]:
-
-
-eco.set_index('col0', inplace = True)
-
-
-# In[24]:
-
-
-eco.head()
-
-
-# In[25]:
-
-
-eco = eco.loc[['FDTR Index',
-'USGG3M Index',
-'USGG10YR Index',
-'USTW$ Index',
-'INJCJC Index',
-'INJCSP Index',
-'USEMNCHG Index',
-'NFP PCH Index',
-'NFP TCH Index',
-'USMMMNCH Index',
-'OUTFGAF Index',
-'KOIMTOTY Index',
-'KOFETOT% Index',
-'KOEXTOTY Index',
-'KOCPIMOM Index',
-'SKCIMOM Index',
-'USHETOT% Index',
-'KOCPIYOY Index',
-'SKCIYOY Index',
-'USHEYOY Index',
-'USURTOT Index',
-'KOFETOT Index',
-'SAARTOTL Index',
-'NAPMPRIC Index',
-'KOCPI Index',
-'CONCCONF Index',
-'NAPMNEWO Index',
-'SKCITTL Index',
-'CHPMINDX Index',
-'USWHTOT Index',
-'NAPMPMI Index',
-'SKBSIC Index',
-'CONSSENT Index',
-'USERTOT Index',
-'LEI WKIJ Index',
-'KOEXTOT Index',
-'KOIMTOT Index',
-'NFP T Index',
-'USEMTOT Index',
-'KOIVCONY Index',
-'KOEXPTIY Index',
-'KOIMPTIY Index',
-'KOIPMY Index',
-'KOIPIY Index',
-'KOPSIY Index',
-'LEI YOY Index',
-'KOPIIY Index',
-'IP  YOY Index',
-'KOIPOPSM Index',
-'KOEXPTIM Index',
-'KOIPMSM Index',
-'KOIPIMOM Index',
-'TMNOCHNG Index',
-'KOIPMCY Index',
-'KOIMPTIM Index',
-'LEI IRTE Index',
-'PITLYOY Index',
-'CFNAI Index',
-'PITLCHNG Index',
-'KOPPIYOY Index',
-'IP  CHNG Index',
-'CFNAIMA3 Index',
-'LEI CHNG Index',
-'LEI ACE Index',
-'SKLILY Index',
-'KOPPIMOM Index',
-'CPI YOY Index',
-'CPI CHNG Index',
-'PCE DEFY Index',
-'CPUPXCHG Index',
-'CPI XYOY Index',
-'PCE CYOY Index',
-'PIDSDPS Index',
-'KOIPMS Index',
-'KOIPISA Index',
-'SKLILI Index',
-'SKLILC Index',
-'SKLICI Index',
-'KOIPMC Index',
-'KOIMPTI Index',
-'LEI AVGW Index',
-'KOPPI Index',
-'IP Index',
-'LEI TOTL Index',
-'KOEXPTI Index',
-'CPTICHNG Index',
-'LEI STKP Index',
-'LEI BP Index',
-'PIDSPINX Index',
-'LEI MNO Index',
-'LEI NWCN Index',
-'KOBPCB Index',
-'KOBPFIN Index',
-'KOBPTB Index',
-'KODIBAL Index',
-'FRNTTNET Index',
-'FRNTTOTL Index',
-'KOBPCA Index',
-'KOMSMBY Index',
-'CICRTOT Index',
-'KOMSM1FY Index',
-'KOMSM1Y Index',
-'MTIBCHNG Index',
-'MGT2TB Index',
-'MGT2RE Index',
-'OEUSKLAP Index',
-'OEUSKLAR Index',
-'OEKRN022 Index',
-'GPDITOC% Index',
-'KOECGCPY Index',
-'KOECIMPY Index',
-'KOECGCSY Index',
-'KOECSIMQ Index',
-'KOECPRCY Index',
-'KOECSPRQ Index',
-'KOECFCSY Index',
-'KOECFCOY Index',
-'KOECSEMQ Index',
-'GDP CQOQ Index',
-'GPGSTOC% Index',
-'KOECEXPY Index',
-'GDP CYOY Index',
-'GDPCTOT% Index',
-'GDP CURY Index',
-'KOECSGVQ Index',
-'KOECGVTY Index',
-'GDP PIQQ Index',
-'GDPCPCEC Index',
-'GDP CUR$ Index',
-'USCABAL Index',
-'JNVNIYOY Index',
-'COSTNFR% Index',
-'KOGNICNY Index',
-'KODFTOTY Index',
-'KOGNICUY Index',
-'EHCAUS Index',
-'KOGCGDPY Index',
-'PRODNFR% Index',
-'KOGCSTOQ Index'], :]
-
-
-# In[33]:
-
-
-eco.head()
-
-
-# In[27]:
-
-
-eco.reset_index(inplace = True)
-
-
-# In[30]:
-
+#%%
+eco = pd.read_csv('bloomberg_smc_longdays.csv')
+#%%
 
 len(eco)
-
-
-# In[29]:
-
-
-eco.to_csv('bloomberg_smc_longdays.csv')
-
-
-# In[ ]:
-
-
-
-
-
-# In[34]:
-
-
-eco.info()
-
-
-# ### --- 여기까지는 Column 뽑아내기 ---
-
-# In[236]:
-
-
-eco = pd.read_csv('bloomberg_smc_longdays.csv.csv')
-
-
-# In[35]:
-
-
-len(eco)
-
-
-# In[36]:
+#%%
 
 
 eco.head()
-
-
-# In[37]:
-
-
+#%%
 eco['col4'] = pd.to_numeric(eco['col4'])
-
-
-# In[38]:
-
-
+#%%
 eco.info()
 
-
-# In[39]:
-
-
+#%%
 eco['col4'].sort_values()
-
-
-# In[40]:
-
+#%%
 
 # col3 type datetime으로 만들기 
 eco['col3'] = pd.to_datetime(eco['col3'])
 
-
-# In[41]:
-
+#%%
 
 # 변수 종류는 289개
 len(eco['col0'].unique())
-
-
-# In[42]:
-
+#%%
 
 # 변수별로 데이터 갯수 확인 필요 뭐야 이거 시박 다 다르네
 for i, j in enumerate(eco['col0'].unique()):
     print(i, eco['col0'].unique()[i], len(eco[eco['col0'] == j]))    
 
-
-# In[46]:
-
+#%%
 
 k = pd.DataFrame()
-
-
-# In[47]:
-
-
 k_1 = []
 
 
@@ -299,16 +48,6 @@ for i, j in enumerate(eco['col0'].unique()):
     k_1.append([i, eco['col0'].unique()[i], len(eco[eco['col0'] == j])])
 
 
-# In[53]:
-
-
-import numpy as np
-
-
-# In[54]:
-
-
-k_1.to_ndarray(column= ['index', 'ticker', 'len_data'])
 
 
 # In[56]:
@@ -440,8 +179,127 @@ i
 
 def index_slicer(dataframe, col_name):
     index_name = list(dataframe[col_name].unique())
+
     for i in index_name:
          = dataframe[dataframe[col_name] == i]
+
+         return 
         
     return 생성된 수많은 데이터프레임      
 
+
+
+#%%
+# 이거아냐
+def index_slicer(dataframe, col_name):
+    index_name = list(dataframe[col_name].unique())
+    for i in index_name:
+#%%
+# 이것도 아냐
+def make_df(index_name):
+    new_df = dataframe[dataframe[col_name] == index_name]
+    return new_df
+
+#%%
+name = list(eco['col0'].unique())
+
+
+
+
+# %%
+import sys
+mod = sys.modules[__name__]
+
+# %%
+for i, j in enumerate(name):
+    setattr(mod, name[i], eco[eco['col0'] == j])
+
+
+# %%
+name[0]
+
+# %%
+# 이제 일자기준으로 비는것은 null로 해서 merge하는 함수 쓰고 빈거 채우면 되겠다!
+# 핳 ㅏㅎ ㅏ하
+eco.head()
+# %%
+# 인덱스명에서 띄어쓰기 없애자 
+eco['col0'] = eco['col0'].map(lambda x: x.replace(' ', ''))
+
+# %%
+eco.head()
+#%%
+len(name)
+
+# %%
+# 다시 
+for i, j in enumerate(name):
+    setattr(mod, name[i], eco[eco['col0'] == j])
+
+# %%
+FDTRIndex
+
+# %%
+name[1]
+
+#%%
+USGG3MIndex.head()
+# %%
+# 모든 데이터 프레임 객체에서 col0을 날리자
+for i in name:
+    globals()[i].drop('col0', axis = 1, inplace = True)
+
+# %%
+for i in name:
+    globals()[i].columns = ['col1', 'col2', 'date', i]
+
+#%%
+for i in name:
+    globals()[i].drop(['col1', 'col2'], axis = 1, inplace = True)
+# %%
+new_df = FDTRIndex
+
+#%%
+new_df.head()
+# %%
+for i in name:
+    new_df = pd.merge(new_df, globals()[i], how = 'outer', on = 'date')
+
+
+# %%
+# %%
+
+new_df.head()
+
+# %%
+pd.merge(new_df, globals()['USGG3MIndex'])
+
+# %%
+new_df.to_csv('bloomberg_total_index.csv')
+
+# %%
+new_df.info()
+
+# %%
+new_df.head()
+
+# %%
+len(new_df)
+
+# %%
+new_df['KOGCSTOQIndex'][0: 30]
+
+# %%
+KOGCSTOQIndex[0:30]
+
+# %%
+pd.fillna(new_df, 'ffill')
+
+# %%
+new_df_step = new_df
+
+# %%
+new_df_step.head()
+
+# %%
+new_df
